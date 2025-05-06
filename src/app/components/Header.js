@@ -1,25 +1,50 @@
-// components/Header.js
-export default function Header() {
+'use client';
+
+import React from 'react';
+
+const Header =() =>{
+  const scrollToId = (id) => {
+    if (id === 'home') {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } else {
+      const section = document.getElementById(id);
+      if (section) {
+        section.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+  };
+
   return (
-    <header className="bg-white shadow-md">
-      <div className="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
-        {/* <img src="/public/logo.jpg"/> */}
-        <div className="flex items-center space-x-2">
-          <img src="/logo.png" alt="Logo" className="h-20 w-20 object-contain rounded-4xl" />
-          <h1 className="text-xl font-bold text-blue-600">AI Recruiter</h1>
-        </div>
-        <nav>
-        <ul className="flex gap-6">
-          <li><a href="#home" className="text-gray-700 hover:text-blue-600 hover:scale-125 hover:font-semibold transition-all duration-300 inline-block">Home</a></li>
-          <li>
-            <a href="#features" className="text-gray-700 hover:text-blue-600 hover:scale-125 hover:font-semibold transition-all duration-300 inline-block">Features</a>
-          </li>
-          <li>
-            <a href="#contact" className="text-gray-700 hover:text-blue-600 hover:scale-125 hover:font-semibold transition-all duration-300 inline-block">Contact</a>
-          </li>
-        </ul>
+    <header className="fixed top-0 left-0 w-full z-50 bg-gradient-to-r from-white via-gray-100 to-white shadow-lg">
+      <div className="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
+      {/* Wrap logo and text in a flex container */}
+      <div className="flex items-center space-x-2">
+        <img src="/logo.png" alt="Logo" className="h-10 w-10 object-contain rounded-2xl" />
+        <div className="text-2xl font-bold text-blue-600">AI Recruiters</div>
+      </div>
+        <nav className="space-x-15 hidden md:flex text-xl font-bold">
+          <button
+            onClick={() => scrollToId('home')}
+            className="text-gray-800 hover:text-blue-600 font-medium transition duration-200"
+          >
+            Home
+          </button>
+          <button
+            onClick={() => scrollToId('features')}
+            className="text-gray-800 hover:text-blue-600 font-medium transition duration-200"
+          >
+            Features
+          </button>
+          <button
+            onClick={() => scrollToId('contact')}
+            className="text-gray-800 hover:text-blue-600 font-medium transition duration-200"
+          >
+            Contact
+          </button>
         </nav>
       </div>
     </header>
-  )
-}
+  );
+};
+
+export default Header;
